@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RAG News Chatbot Design System - Dark Theme
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark news theme palette */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 95%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 95%;
+
+    /* News blue primary */
+    --primary: 212 100% 55%;
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 212 100% 55%;
+    --accent-foreground: 222 47% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 15%;
+    --input: 222 47% 12%;
+    --ring: 212 100% 55%;
+
+    --radius: 0.75rem;
+
+    /* Chat-specific colors */
+    --chat-user-bg: 212 100% 55%;
+    --chat-user-fg: 222 47% 7%;
+    --chat-bot-bg: 222 47% 12%;
+    --chat-bot-fg: 210 40% 95%;
+    
+    /* Gradients */
+    --gradient-header: linear-gradient(135deg, hsl(222, 47%, 9%) 0%, hsl(222, 47%, 7%) 100%);
+    --gradient-chat: linear-gradient(180deg, hsl(222, 47%, 8%) 0%, hsl(222, 47%, 6%) 100%);
+    
+    /* Shadows */
+    --shadow-message: 0 2px 8px hsla(222, 47%, 4%, 0.3);
+    --shadow-header: 0 2px 16px hsla(222, 47%, 4%, 0.4);
+    
+    /* Animation */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
