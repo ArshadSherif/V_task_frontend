@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
 
-## Project info
+# Voosh RAG Chatbot Frontend
 
-**URL**: https://lovable.dev/projects/d4b6954f-76fe-4ddc-9bfc-bb84414ed79c
+A modern React-based frontend for a Retrieval-Augmented Generation (RAG) chatbot system. This project connects to a Node.js/Express backend with RAG pipeline, session management, and streaming chat features.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Chat UI**: React + TailwindCSS (or SCSS), with streaming bot responses, session reset, and chat history.
+- **Sidebar**: Responsive sidebar for navigation or session management.
+- **Session Management**: Fetch, display, and reset chat sessions.
+- **API Integration**: Connects to a backend REST API for chat, session history, and reset.
+- **Performance**: Designed for fast, interactive chat with in-memory caching (Redis on backend).
 
-**Use Lovable**
+## Project Structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d4b6954f-76fe-4ddc-9bfc-bb84414ed79c) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+frontend/
+├── public/
+├── src/
+│   ├── api/           # API calls to backend
+│   ├── components/    # UI components (Chat, Sidebar, etc.)
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utilities
+│   ├── pages/         # Page components (Chat, NotFound)
+│   └── ...
+├── package.json
+├── tailwind.config.ts
+├── vite.config.ts
+└── ...
 ```
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or bun
 
-**Use GitHub Codespaces**
+### Install Dependencies
+```bash
+npm install
+# or
+bun install
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Run Development Server
+```bash
+npm run dev
+# or
+bun run dev
+```
 
-## What technologies are used for this project?
+### Build for Production
+```bash
+npm run build
+```
 
-This project is built with:
+## API Endpoints (Expected from Backend)
+- `POST /chat` — Send a message, receive streamed or full response
+- `GET /history/:session_id` — Fetch chat history
+- `POST /reset/:session_id` — Reset/clear session
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Caching & Performance
+- Session history and conversations are cached in Redis (backend)
+- TTLs and cache warming can be configured in backend Redis setup (see backend README)
 
-## How can I deploy this project?
+## RAG Pipeline (Backend)
+- Ingests ~50 news articles (RSS or HTML)
+- Embeds with Jina or open-source embeddings
+- Stores in vector DB (Qdrant, Chroma, Faiss, etc.)
+- Retrieves top-k passages, calls Gemini API for answer
 
-Simply open [Lovable](https://lovable.dev/projects/d4b6954f-76fe-4ddc-9bfc-bb84414ed79c) and click on Share -> Publish.
+## Customization
+- Edit `src/components/ui/sidebar.tsx` for sidebar UI
+- Edit `src/pages/Chat.tsx` for chat logic and layout
 
-## Can I connect a custom domain to my Lovable project?
+## License
+MIT
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+**Note:** This is the frontend only. For backend setup, see the corresponding backend repository.
