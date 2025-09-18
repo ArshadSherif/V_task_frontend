@@ -1,13 +1,12 @@
 
-# Voosh RAG Chatbot Frontend
+# RAG Chatbot Frontend
 
-A modern React-based frontend for a Retrieval-Augmented Generation (RAG) chatbot system. This project connects to a Node.js/Express backend with RAG pipeline, session management, and streaming chat features.
+A modern React-based frontend for a Retrieval-Augmented Generation (RAG) chatbot system. This project connects to a Fastapi backend with RAG pipeline, history management, and streaming chat features.
 
 ## Features
 
 - **Chat UI**: React + TailwindCSS (or SCSS), with streaming bot responses, session reset, and chat history.
-- **Sidebar**: Responsive sidebar for navigation or session management.
-- **Session Management**: Fetch, display, and reset chat sessions.
+- **Sidebar**: Sidebar for history management.
 - **API Integration**: Connects to a backend REST API for chat, session history, and reset.
 - **Performance**: Designed for fast, interactive chat with in-memory caching (Redis on backend).
 
@@ -54,10 +53,6 @@ bun run dev
 npm run build
 ```
 
-## API Endpoints (Expected from Backend)
-- `POST /chat` — Send a message, receive streamed or full response
-- `GET /history/:session_id` — Fetch chat history
-- `POST /reset/:session_id` — Reset/clear session
 
 ## Caching & Performance
 - Session history and conversations are cached in Redis (backend)
@@ -65,17 +60,8 @@ npm run build
 
 ## RAG Pipeline (Backend)
 - Ingests ~50 news articles (RSS or HTML)
-- Embeds with Jina or open-source embeddings
-- Stores in vector DB (Qdrant, Chroma, Faiss, etc.)
+- Embeds with open-source embeddings (refer backend)
+- Stores in vector DB (redis)
 - Retrieves top-k passages, calls Gemini API for answer
 
-## Customization
-- Edit `src/components/ui/sidebar.tsx` for sidebar UI
-- Edit `src/pages/Chat.tsx` for chat logic and layout
 
-## License
-MIT
-
----
-
-**Note:** This is the frontend only. For backend setup, see the corresponding backend repository.
